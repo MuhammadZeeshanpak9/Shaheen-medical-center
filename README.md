@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shaheen Medical Center — Website
 
-## Getting Started
+Marketing website for Shaheen Medical Center, a polyclinic in Islamabad, Pakistan.
+Built by Aurorix Tech.
 
-First, run the development server:
+## Tech stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js** (App Router, TypeScript, `src/` directory, `@/*` import alias)
+- **Tailwind CSS v4** (CSS-first config via `@theme` in `globals.css`)
+- **Framer Motion** — scroll reveals, stagger, hover/tap micro-interactions, page transitions
+- **three / @react-three/fiber / @react-three/drei** — WebGL / 3D hero scene work
+- **GSAP** — used selectively for scroll-linked timelines Framer Motion can't cleanly express (e.g. an ECG line drawing tied to scroll position), not used globally
+- **clsx** — conditional className composition (via `cn()` in `lib/utils.ts`)
+- **lucide-react** — icon set for UI icons outside custom medical iconography
+- **ESLint**, **Prettier** + `prettier-plugin-tailwindcss` — linting and formatting
+
+## Folder structure
+
+```
+src/
+  app/
+    layout.tsx          root layout — fonts, metadata, Navbar/Footer
+    page.tsx             home
+    about/page.tsx
+    services/page.tsx
+    doctors/page.tsx
+    contact/page.tsx
+  components/
+    layout/              Navbar, Footer
+    ui/                   shared small components (Button, Card, SectionHeading, etc.)
+    motion/                shared Framer Motion wrapper components (RevealOnScroll, StaggerGroup, etc.)
+    three/                 React Three Fiber components (HeroScene, BloodCellField, etc.)
+  lib/
+    constants.ts          site-wide content constants (clinic info, nav links, service list)
+    utils.ts               cn() className helper
+  app/globals.css          Tailwind layers + design token CSS variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running the dev server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then open http://localhost:3000.
 
-## Learn More
+## Design tokens
 
-To learn more about Next.js, take a look at the following resources:
+### Colors
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Token        | Hex       | Usage                                          |
+| ------------ | --------- | ----------------------------------------------- |
+| `navy`       | `#0A2A4D` | Headings, footer background, deep sections       |
+| `blue`       | `#0B5FA8` | Primary actions, links, icons                    |
+| `blue-light` | `#4FA8DA` | Secondary accents, gradients                     |
+| `sky`        | `#EAF4FC` | Section backgrounds, alternates with white       |
+| `teal`       | `#1CA9A0` | Signature accent (ECG/pulse motif only, sparing) |
+| `ink`        | `#14213A` | Body text                                        |
+| `ink-soft`   | `#4A5B72` | Secondary/muted text                             |
+| `line`       | `#D8E6F2` | Borders, dividers                                |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Use as Tailwind utilities: `bg-navy`, `text-sky`, `border-line`, etc.
 
-## Deploy on Vercel
+### Fonts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Token     | Font           | Weights             | Usage                                    |
+| --------- | -------------- | -------------------- | ----------------------------------------- |
+| `display` | Fraunces       | 400, 500, 600, 700    | Headlines only, used with restraint       |
+| `body`    | Manrope        | 400, 500, 600, 700, 800 | All body copy and UI text              |
+| `mono`    | IBM Plex Mono  | 400, 500              | Eyebrow labels, small data/stat text only |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use as Tailwind utilities: `font-display`, `font-body`, `font-mono`.
+
+Fonts are loaded via `next/font/google` in `src/app/layout.tsx` and exposed as CSS
+variables (`--font-display`, `--font-body`, `--font-mono`), which are wired into the
+Tailwind theme via `@theme inline` in `src/app/globals.css`.
