@@ -11,13 +11,13 @@ import {
   Syringe,
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import ServiceCard from "@/components/ui/ServiceCard";
+import IllustratedCard from "@/components/ui/IllustratedCard";
 import Button from "@/components/ui/Button";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { clinicInfo, services, pageCopy } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `Services — ${clinicInfo.name}`,
+  title: `Services | ${clinicInfo.name}`,
   description:
     "Full range of outpatient services at Shaheen Medical Center: gynea checkups, chronic disease management, ECG, blood tests, in-house pharmacy and more.",
 };
@@ -58,10 +58,12 @@ export default function ServicesPage() {
           <SectionHeading eyebrow="All Services" heading="Every service we offer" />
           <StaggerGroup className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service, i) => (
-              <ServiceCard
+              <IllustratedCard
                 key={service.name}
-                service={service}
+                title={service.name}
+                description={service.description}
                 icon={serviceIcons[i] ?? <Stethoscope />}
+                index={i + 1}
               />
             ))}
           </StaggerGroup>

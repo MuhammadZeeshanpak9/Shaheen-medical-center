@@ -55,7 +55,7 @@ export default function PersonCard({ person, revealDelay = 0 }: PersonCardProps)
           transition={{ duration, ease: "easeOut", delay: d(0.14) }}
           className="mt-3 font-body text-sm italic text-ink-soft"
         >
-          {person.bio ?? "Bio coming soon — to be provided by the clinic."}
+          {person.bio ?? "Bio coming soon, to be provided by the clinic."}
         </motion.p>
       </div>
     </Card>

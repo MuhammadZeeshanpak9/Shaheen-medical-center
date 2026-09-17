@@ -2,10 +2,13 @@
 
 :root {
   --color-navy: #0a2a4d;
+  --color-navy-deep: #051b36;
   --color-blue: #0b5fa8;
+  --color-blue-hover: #1374c7;
   --color-blue-light: #4fa8da;
   --color-sky: #eaf4fc;
   --color-teal: #1ca9a0;
+  --color-teal-glow: #24d6ca;
   --color-ink: #14213a;
   --color-ink-soft: #4a5b72;
   --color-line: #d8e6f2;
@@ -13,10 +16,13 @@
 
 @theme inline {
   --color-navy: var(--color-navy);
+  --color-navy-deep: var(--color-navy-deep);
   --color-blue: var(--color-blue);
+  --color-blue-hover: var(--color-blue-hover);
   --color-blue-light: var(--color-blue-light);
   --color-sky: var(--color-sky);
   --color-teal: var(--color-teal);
+  --color-teal-glow: var(--color-teal-glow);
   --color-ink: var(--color-ink);
   --color-ink-soft: var(--color-ink-soft);
   --color-line: var(--color-line);

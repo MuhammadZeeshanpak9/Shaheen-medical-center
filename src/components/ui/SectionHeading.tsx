@@ -10,6 +10,8 @@ type SectionHeadingProps = {
   subheading?: string;
   align?: "left" | "center";
   className?: string;
+  /** Use "dark" on navy/dark backgrounds so heading/subheading stay readable. */
+  tone?: "light" | "dark";
 };
 
 export default function SectionHeading({
@@ -18,6 +20,7 @@ export default function SectionHeading({
   subheading,
   align = "left",
   className,
+  tone = "light",
 }: SectionHeadingProps) {
   const reduced = useReducedMotion();
   const initialY = reduced ? 0 : 16;
@@ -45,12 +48,22 @@ export default function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration, ease: "easeOut", delay: reduced ? 0 : 0.1 }}
-        className="mt-2 font-display text-2xl font-semibold text-navy sm:text-3xl"
+        className={cn(
+          "mt-2 font-display text-2xl font-semibold sm:text-3xl",
+          tone === "dark" ? "text-white" : "text-navy",
+        )}
       >
         {heading}
       </motion.h2>
       {subheading && (
-        <p className="mt-3 font-body text-base text-ink-soft">{subheading}</p>
+        <p
+          className={cn(
+            "mt-3 font-body text-base",
+            tone === "dark" ? "text-sky/80" : "text-ink-soft",
+          )}
+        >
+          {subheading}
+        </p>
       )}
     </div>
   );

@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
 import { HeartHandshake, GraduationCap, Building2, HandHeart, Activity, TestTube, Pill, Scissors } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Card from "@/components/ui/Card";
-import StatItem from "@/components/ui/StatItem";
+import IllustratedCard from "@/components/ui/IllustratedCard";
 import Button from "@/components/ui/Button";
 import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { clinicInfo, pageCopy } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `About Us — ${clinicInfo.name}`,
+  title: `About Us | ${clinicInfo.name}`,
   description:
     "Learn about Shaheen Medical Center, a polyclinic in Ghouri Town, Islamabad led by Holy Family Hospital-trained physicians.",
 };
 
-const valueIcons = [HeartHandshake, GraduationCap, Building2, HandHeart];
+const valueIcons = [
+  <HeartHandshake key="heart-handshake" />,
+  <GraduationCap key="graduation-cap" />,
+  <Building2 key="building" />,
+  <HandHeart key="hand-heart" />,
+];
 const facilityIcons = [
   <Activity key="activity" />,
   <TestTube key="testtube" />,
@@ -62,22 +66,15 @@ export default function AboutPage() {
             className="mx-auto"
           />
           <StaggerGroup className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.items.map((value, i) => {
-              const Icon = valueIcons[i];
-              return (
-                <Card key={value.title} className="flex flex-col gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy text-sky">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <h3 className="font-display text-base font-semibold text-navy">
-                    {value.title}
-                  </h3>
-                  <p className="font-body text-sm text-ink-soft">
-                    {value.description}
-                  </p>
-                </Card>
-              );
-            })}
+            {values.items.map((value, i) => (
+              <IllustratedCard
+                key={value.title}
+                title={value.title}
+                description={value.description}
+                icon={valueIcons[i]}
+                index={i + 1}
+              />
+            ))}
           </StaggerGroup>
         </div>
       </section>
@@ -90,12 +87,14 @@ export default function AboutPage() {
             align="center"
             className="mx-auto"
           />
-          <StaggerGroup className="mt-10 grid grid-cols-2 gap-8 lg:grid-cols-4">
+          <StaggerGroup className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {facilities.items.map((facility, i) => (
-              <StatItem
+              <IllustratedCard
                 key={facility.title}
+                title={facility.title}
+                description={facility.description}
                 icon={facilityIcons[i]}
-                label={`${facility.title} — ${facility.description}`}
+                index={i + 1}
               />
             ))}
           </StaggerGroup>

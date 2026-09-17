@@ -6,7 +6,7 @@ import { StaggerGroup } from "@/components/motion/StaggerGroup";
 import { clinicInfo, doctors, staff, pageCopy } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `Our Doctors — ${clinicInfo.name}`,
+  title: `Our Doctors | ${clinicInfo.name}`,
   description:
     "Meet the physicians and support staff at Shaheen Medical Center, Ghouri Town, Islamabad.",
 };

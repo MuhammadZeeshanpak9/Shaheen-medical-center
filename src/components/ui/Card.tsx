@@ -24,8 +24,9 @@ export default function Card({ children, className, revealDelay = 0 }: CardProps
         ease: "easeOut",
         delay: reduced ? 0 : revealDelay,
       }}
+      whileHover={reduced ? undefined : { y: -4, scale: 1.01 }}
       className={cn(
-        "rounded-2xl border border-line bg-white p-6 shadow-sm",
+        "rounded-2xl border border-line bg-white p-6 shadow-sm transition-all duration-300 hover:border-blue-hover/40 hover:shadow-xl hover:shadow-blue/5",
         className,
       )}
     >

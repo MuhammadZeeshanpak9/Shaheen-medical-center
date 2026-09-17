@@ -114,7 +114,7 @@ export default function ContactForm() {
 
       {submitted && (
         <p role="status" className="font-body text-sm text-teal">
-          Thanks — this form is UI-only for now, no message was actually sent.
+          Thanks. This form is UI-only for now, no message was actually sent.
         </p>
       )}
     </form>

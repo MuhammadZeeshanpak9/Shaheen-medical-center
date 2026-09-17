@@ -5,7 +5,7 @@ import ContactForm from "@/components/ui/ContactForm";
 import { clinicInfo, pageCopy } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `Contact Us — ${clinicInfo.name}`,
+  title: `Contact Us | ${clinicInfo.name}`,
   description: `Visit or call ${clinicInfo.name} in Ghouri Town, Islamabad. Walk-ins welcome, every day.`,
 };
 
@@ -78,7 +78,7 @@ export default function ContactPage() {
 
           <div className="overflow-hidden rounded-2xl border border-line">
             <iframe
-              title="Shaheen Medical Center location — Ghouri Town, Islamabad"
+              title="Shaheen Medical Center location, Ghouri Town, Islamabad"
               src={mapSrc}
               className="h-full min-h-[320px] w-full"
               loading="lazy"
